@@ -1,2 +1,2 @@
 # sample-react-component-lib
-A Sample react component library
+A sample react component library
