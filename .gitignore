@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# Storybook static page folder
+.out/
+
+# Webpack Dev Server distribution
+dist/
