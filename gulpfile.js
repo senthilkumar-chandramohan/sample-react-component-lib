@@ -11,25 +11,29 @@ const files = {
     less: ['./src/**/*.less'],
 };
 
-gulp.task('clean-build', () => {
+function clean_build(done) {
     del('./compile');
-});
+    done();
+}
 
-//gulp.task('clean', ['clean-build'], () => {});
-
-gulp.task('compile-js', () => {
+function compile_js(done) {
     gulp.src([...files.js, ...files.jsx])
         .pipe(babel())
         .pipe(gulp.dest('./compile'));
-});
+    done();
+};
 
-gulp.task('compile-less', () => {
+function compile_less(done) {
     gulp.src([...files.less])
         .pipe(less())
         .pipe(cssAutoprefixer({
             browsers: ['last 2 versions', 'last 2 ie versions'],
         }))
         .pipe(gulp.dest('./compile'));
-});
+    done();
+};
 
-gulp.task('default', gulp.series('compile-less'), () => {});
+gulp.task('compile-less', compile_less);
+gulp.task('compile-js', compile_js);
+gulp.task('clean-build', clean_build);
+gulp.task('default', gulp.series(clean_build, compile_js, compile_less));
