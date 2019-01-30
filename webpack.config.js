@@ -1,16 +1,21 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HTMLTemplate = require('html-webpack-template');
 
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
+    title: 'React Components',
+    template: HTMLTemplate,
+    appMountId: 'app',
+    meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
 });
 
 module.exports = {
-    entry: "./src/app.js",
+    entry: {
+        app: path.resolve(__dirname, 'index.jsx'),
+    },
     output: {
         path: path.resolve("dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
     },
     module: {
         rules: [{

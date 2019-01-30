@@ -1,0 +1,1 @@
+export { default as HomepageHero } from './components/homepage-hero/jsx/HomepageHero';
